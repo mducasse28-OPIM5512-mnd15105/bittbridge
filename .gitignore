@@ -164,3 +164,8 @@ testing/
 # Editors
 .vscode/settings.json
 miner_model_energy/cache/
+miner_model_energy/cache/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.log
