@@ -32,7 +32,7 @@ features:
 
   # Standalone load_delta_1 and load_delta_12 when use_load_rolling is false.
   use_load_delta: false
-  load_lag_steps: [72, 144, 288]
+  load_lag_steps: [72, 144, 288, 576]
   rolling_load_windows: [12, 24, 72, 144]
 
 # validation_split: last fraction of time-ordered train used for metrics; random_state seeds CART / RNN / LSTM.
@@ -48,8 +48,8 @@ models:
     fit_intercept: true
   cart:
     max_depth: 5
-    min_samples_split: 25
-    min_samples_leaf: 12
+    min_samples_split: 30
+    min_samples_leaf: 15
   
   lstm:
     n_steps: 12

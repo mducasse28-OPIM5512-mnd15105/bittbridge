@@ -1,0 +1,39 @@
+{
+  "model_type": "cart",
+  "model_path": "model_cart.joblib",
+  "metrics_path": "metrics.json",
+  "actual_vs_predicted_path": "actual_vs_predicted.csv",
+  "features": [
+    "hour",
+    "minute",
+    "dayofweek",
+    "month"
+  ],
+  "features_count": 4,
+  "feature_signature": "2833f7f5f98b91f0c42c17be870ae18f8078b15c5883b3de14168def34fba5ac",
+  "train_rows": 242648,
+  "metrics": {
+    "train": {
+      "rmse": 1669.2853602655166,
+      "mae": 1242.8762316353593,
+      "mape": 9.571294330277006,
+      "r2": 0.6029211451621708
+    },
+    "validation": {
+      "rmse": 1646.66656077793,
+      "mae": 1314.0044320748998,
+      "mape": 9.21108141872525,
+      "r2": 0.4802291613823667
+    }
+  },
+  "durations_sec": {
+    "prepare_data_sec": 38.928267498034984,
+    "split_arrays_sec": 0.009996071923524141,
+    "fit_sec": 0.14263966120779514,
+    "metrics_sec": 0.015006353845819831,
+    "split_and_fit_sec": 0.1677218908444047,
+    "total_sec": 39.09598938887939
+  },
+  "lstm_n_steps": null,
+  "rnn_n_steps": null
+}

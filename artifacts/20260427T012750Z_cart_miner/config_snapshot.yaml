@@ -1,0 +1,103 @@
+data:
+  source: supabase_storage
+  train_csv: miner_model_energy/TRAIN-updated-train-data_3-25-26.csv
+  test_csv: miner_model_energy/TEST-03-25-2026-5min-single.csv
+  supabase_url: https://lparhzmnwbslsskxswfr.supabase.co
+  supabase_key: sb_publishable_Z5tzsGbj045iGDqZspFU0A_voHhnp7H
+  supabase_schema: hackathon
+  supabase_train_table: hackathon-train-data
+  supabase_test_table: hackathon-test-data
+  forecast_horizon_min: 5
+  supabase_page_size: 1000
+  storage_train_base_url: https://lparhzmnwbslsskxswfr.supabase.co/storage/v1/object/public/public-dumps/hackathon-train-data/
+  storage_train_parts:
+  - part-2024-01.csv
+  - part-2024-02.csv
+  - part-2024-03.csv
+  - part-2024-04.csv
+  - part-2024-05.csv
+  - part-2024-06.csv
+  - part-2024-07.csv
+  - part-2024-08.csv
+  - part-2024-09.csv
+  - part-2024-10.csv
+  - part-2024-11.csv
+  - part-2024-12.csv
+  - part-2025-01.csv
+  - part-2025-02.csv
+  - part-2025-03.csv
+  - part-2025-04.csv
+  - part-2025-05.csv
+  - part-2025-06.csv
+  - part-2025-07.csv
+  - part-2025-08.csv
+  - part-2025-09.csv
+  - part-2025-10.csv
+  - part-2025-11.csv
+  - part-2025-12.csv
+  - part-2026-01.csv
+  - part-2026-02.csv
+  - part-2026-03.csv
+  - part-2026-04.csv
+  storage_cache_dir: miner_model_energy/cache
+  storage_cache_parquet_name: train_merged.parquet
+  storage_force_refresh: false
+features:
+  use_time_features: true
+  include_weather_suffix_groups:
+  - tmpf
+  - dwpf
+  - relh
+  - sped
+  use_cyclical_features: true
+  use_station_agg_features: true
+  use_temp_dew_gap: true
+  use_load_lags: true
+  use_load_rolling: true
+  use_load_delta: false
+  load_lag_steps:
+  - 72
+  - 144
+  - 288
+  rolling_load_windows:
+  - 12
+  - 24
+  - 72
+training:
+  validation_split: 0.2
+  random_state: 42
+  show_training_progress: true
+models:
+  linear:
+    fit_intercept: true
+  cart:
+    max_depth: 6
+    min_samples_split: 10
+    min_samples_leaf: 5
+  lstm:
+    n_steps: 12
+    units: 64
+    dropout: 0.15
+    epochs: 10
+    batch_size: 16
+    dense_units: 16
+    learning_rate: 0.001
+    use_early_stopping: true
+    early_stopping_patience: 2
+    standardize_inputs: true
+    fit_verbose: 1
+  rnn:
+    n_steps: 12
+    units: 64
+    dropout: 0.15
+    epochs: 10
+    batch_size: 16
+    dense_units: 16
+    learning_rate: 0.001
+    use_early_stopping: true
+    early_stopping_patience: 2
+    standardize_inputs: true
+    fit_verbose: 1
+persistence:
+  artifact_dir: /home/mducasse28/bittbridge/artifacts
+  save_on_deploy: true
